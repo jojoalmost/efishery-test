@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './Table.module.scss';
 
 const Table = ({data = [], loading, onDelete, onEdit}) => {
     const currencyFormat = (number = 0) => {
@@ -25,8 +26,8 @@ const Table = ({data = [], loading, onDelete, onEdit}) => {
             </tr>
             </tbody>
         )
-        let cleanData = data.filter(({uuid}) => uuid);
-        cleanData = cleanData.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
+        // let cleanData = data.filter(({uuid}) => uuid);
+        let cleanData = data.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
         return (
             <tbody>
             {cleanData.map(datum => (
@@ -34,8 +35,8 @@ const Table = ({data = [], loading, onDelete, onEdit}) => {
                     <td>{datum.komoditas}</td>
                     <td>{datum.area_provinsi}</td>
                     <td>{datum.area_kota}</td>
-                    <td>{datum.size}</td>
-                    <td>{currencyFormat(datum.price)}</td>
+                    <td className={styles.textRight}>{datum.size}</td>
+                    <td className={styles.textRight}>{currencyFormat(datum.price)}</td>
                     <td>{dateFormat(datum.tgl_parsed)}</td>
                     <td>
                         <button onClick={() => onEdit(datum)}>Edit</button>
@@ -48,7 +49,7 @@ const Table = ({data = [], loading, onDelete, onEdit}) => {
     }
 
     return (
-        <table border={1} width="100%">
+        <table className={styles.table}>
             <thead>
             <tr>
                 <th rowSpan={2}>komoditas</th>

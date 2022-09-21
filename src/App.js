@@ -1,12 +1,15 @@
 import React from "react";
 import {PriceList} from "./modules/pricelist";
-import {Header} from "./components/layout";
+import {Header, MainContent} from "./components/layout";
+import './index.scss';
 
 function App() {
     return (
         <div className="App">
             <Header/>
-            <PriceList/>
+            <MainContent>
+                <PriceList/>
+            </MainContent>
         </div>
     );
 }
