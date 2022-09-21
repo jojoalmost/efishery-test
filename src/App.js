@@ -1,6 +1,7 @@
 import React from "react";
 import {PriceList} from "./modules/pricelist";
 import {Header, MainContent} from "./components/layout";
+import PriceListContextProvider from "./modules/pricelist/context/PriceListContext";
 import './index.scss';
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
         <div className="App">
             <Header/>
             <MainContent>
-                <PriceList/>
+                <PriceListContextProvider>
+                    <PriceList/>
+                </PriceListContextProvider>
             </MainContent>
         </div>
     );

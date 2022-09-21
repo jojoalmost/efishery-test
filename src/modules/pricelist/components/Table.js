@@ -1,10 +1,14 @@
 import React from "react";
 import styles from './Table.module.scss';
+import {usePriceList} from "../context/PriceListContext";
 
-const Table = ({data = [], loading, onDelete, onEdit}) => {
+const Table = () => {
+    const { listRead: { data, loading }, onEdit, onDelete } = usePriceList();
+
     const currencyFormat = (number = 0) => {
-        return new Intl.NumberFormat(['ban', 'id'], {style: 'currency', currency: 'IDR'}).format(number)
+        return new Intl.NumberFormat(['ban', 'id'], {style: 'currency', currency: 'IDR'}).format(number);
     }
+
     const dateFormat = (date) => {
         const options = {
             weekday: 'long',
@@ -26,8 +30,8 @@ const Table = ({data = [], loading, onDelete, onEdit}) => {
             </tr>
             </tbody>
         )
-        // let cleanData = data.filter(({uuid}) => uuid);
-        let cleanData = data.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
+        let cleanData = data.filter(({uuid}) => uuid);
+        cleanData = cleanData.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
         return (
             <tbody>
             {cleanData.map(datum => (

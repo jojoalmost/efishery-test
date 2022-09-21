@@ -1,19 +1,14 @@
 import React from "react";
 import JsonToForm from 'json-reactform';
-import useSteinRead from "../../../hooks/useSteinRead";
 import formModel from "../utils/formModel";
 import styles from './Form.module.scss'
+import {usePriceList} from "../context/PriceListContext";
 
-const Form = ({onSubmit, defaultValue}) => {
-    const {data: optionsArea, loading: optionsAreaLoading} = useSteinRead('option_area');
-    const {data: optionsSize, loading: optionsSizeLoading} = useSteinRead('option_size');
-    const [values, setValues] = React.useState({});
-    const model = formModel(values, optionsArea, optionsSize);
+const Form = () => {
+    const { value, optionsArea, optionsSize, onSubmit } = usePriceList();
+    const model = formModel(value, optionsArea.data, optionsSize.data);
 
-    React.useEffect(() => {
-        setValues(defaultValue);
-    }, [defaultValue]);
-    if (optionsAreaLoading || optionsSizeLoading || JSON.stringify(defaultValue) !== JSON.stringify(values)) return null;
+    if (optionsSize.loading || optionsArea.loading) return null;
 
     return (
         <div className={styles.form}>
