@@ -3,7 +3,7 @@ import SteinStore from "stein-js-client";
 
 const store = new SteinStore(process.env.REACT_APP_STEIN_STORE);
 
-const useStein = (sheetName = 'Sheet1') => {
+const useStein = (sheetName = '') => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState('');
     const [data, setData]= React.useState([]);
