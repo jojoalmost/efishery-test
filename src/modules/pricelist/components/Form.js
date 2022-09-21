@@ -3,11 +3,16 @@ import JsonToForm from 'json-reactform';
 import useSteinRead from "../../../hooks/useSteinRead";
 import formModel from "../utils/formModel";
 
-const Form  = ({onSubmit}) => {
+const Form  = ({onSubmit, defaultValue}) => {
     const { data: optionsArea, loading:optionsAreaLoading } = useSteinRead('option_area');
     const { data: optionsSize, loading:optionsSizeLoading } = useSteinRead('option_size');
-    if (optionsAreaLoading | optionsSizeLoading) return null;
-    const model = formModel(optionsArea, optionsSize);
+    const [values, setValues] = React.useState({});
+    const model = formModel(values, optionsArea, optionsSize);
+
+    React.useEffect(() => {
+        setValues(defaultValue);
+    }, [defaultValue]);
+    if (optionsAreaLoading || optionsSizeLoading || JSON.stringify(defaultValue) !== JSON.stringify(values)) return null;
 
     return (
         <JsonToForm model={model} onSubmit={onSubmit}/>

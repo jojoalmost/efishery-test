@@ -8,9 +8,9 @@ const useSteinActions = (sheetName = '') => {
     const [error, setError] = React.useState('');
     const [result, setResult]= React.useState(null);
 
-    const onCreate = (data) => {
+    const onCreate = (value) => {
         setLoading(true);
-        return store.append(sheetName, data).then(result => {
+        return store.append(sheetName, value).then(result => {
             if (result.hasOwnProperty('error')) throw new Error("Please check payload format!");
             setResult(result);
             return result;
@@ -22,10 +22,10 @@ const useSteinActions = (sheetName = '') => {
         });
     }
 
-    const onEdit = (search, data) => {
+    const onEdit = (by, find , value) => {
         setLoading(true);
         setError('');
-        return store.edit(sheetName, {search: search, set: data}).then(result => {
+        return store.edit(sheetName, {search: {[by]: find}, set: value, limit: 1}).then(result => {
             if (result.hasOwnProperty('error')) throw new Error("Please check payload format!");
             setResult(result);
             return result;
@@ -37,10 +37,10 @@ const useSteinActions = (sheetName = '') => {
         });
     }
 
-    const onDelete = (search) => {
+    const onDelete = (by, value) => {
         setLoading(true);
         setError('');
-        return store.delete(sheetName, {search: search}).then(result => {
+        return store.delete(sheetName, {search: {[by]: value}, limit: 1}).then(result => {
             if (result.hasOwnProperty('error')) throw new Error("Please check payload format!");
             setResult(result);
             return result;
