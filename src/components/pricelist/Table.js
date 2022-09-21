@@ -13,7 +13,7 @@ const Table = ({data = []}) => {
                 <th rowSpan={2}>size</th>
                 <th rowSpan={2}>price</th>
                 <th rowSpan={2}>tanggal</th>
-                <th rowSpan={2}>timestamp</th>
+                <th rowSpan={2}>action</th>
             </tr>
             <tr>
                 <th>provinsi</th>
@@ -29,7 +29,10 @@ const Table = ({data = []}) => {
                     <td>{datum.size}</td>
                     <td>{currencyFormat(datum.price)}</td>
                     <td>{datum.tgl_parsed}</td>
-                    <td>{datum.timestamp}</td>
+                    <td>
+                        <button>edit</button>
+                        <button>hapus</button>
+                    </td>
                 </tr>
             ))}
             </tbody>

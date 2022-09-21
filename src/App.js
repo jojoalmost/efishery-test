@@ -1,5 +1,5 @@
 import React from "react";
-import PriceList from "./components/Pricelist/PriceList";
+import PriceList from "./components/pricelist/PriceList";
 
 function App() {
   return (
