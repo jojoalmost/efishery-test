@@ -2,13 +2,13 @@ import React from "react";
 import SteinStore from "stein-js-client";
 
 function App() {
-  const store = new SteinStore("https://api.steinhq.com/v1/storages/632976687bccea08c119169b");
+  const store = new SteinStore("https://stein.efishery.com/v1/storages/5e1edf521073e315924ceab4");
 
   React.useEffect(() => {
-  store.read("Sheet1", { offset: 2 }).then(data => {
+  store.read("list").then(data => {
     console.log(data);
   });
-  });
+  }, []);
 
   const handleAdd = () => {
     store.append("Sheet1", [
