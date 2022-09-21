@@ -4,12 +4,15 @@ const Table = ({data = []}) => {
     const currencyFormat = (number = 0) => {
         return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number)
     }
+    const dateFormat = (date) =>{
+        return new Date(date).toString()
+    }
     return (
         <table border={1}>
             <thead>
             <tr>
                 <th rowSpan={2}>komoditas</th>
-                <th colSpan={2}>lokasi</th>
+                <th colSpan={2}>area</th>
                 <th rowSpan={2}>size</th>
                 <th rowSpan={2}>price</th>
                 <th rowSpan={2}>tanggal</th>
@@ -28,7 +31,7 @@ const Table = ({data = []}) => {
                     <td>{datum.area_kota}</td>
                     <td>{datum.size}</td>
                     <td>{currencyFormat(datum.price)}</td>
-                    <td>{datum.tgl_parsed}</td>
+                    <td>{dateFormat(datum.tgl_parsed)}</td>
                     <td>
                         <button>edit</button>
                         <button>hapus</button>

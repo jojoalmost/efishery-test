@@ -1,12 +1,14 @@
 import React from "react";
-import PriceList from "./components/pricelist/PriceList";
+import {PriceList} from "./modules/pricelist";
+import {Header} from "./components/layout";
 
 function App() {
-  return (
-    <div className="App">
-      <PriceList />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header/>
+            <PriceList/>
+        </div>
+    );
 }
 
 export default App;
