@@ -1,22 +1,62 @@
 @import "src/styles/variables";
 
 .button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   background-color: $primary-color;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 14px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 
+  &:hover {
+    background-color: darken($primary-color, 10);
+  }
+
   &.info {
-    background-color: #FFEC94;
-    color: #1B4739;
+    background-color: #007bff;
+    color: $white-color;
+
+    &:hover {
+      background-color: darken(#007bff, 10);
+    }
   }
 
   &.danger {
-    background-color: #2684FF !important;
+    background-color: #dc3545;
+    color: $white-color;
+
+    &:hover {
+      background-color: darken(#dc3545, 10);
+    }
+  }
+
+  .loading {
+    border: 2px solid #f3f3f3;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    border-top: 2px solid #555;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
+
+
+
 
 
