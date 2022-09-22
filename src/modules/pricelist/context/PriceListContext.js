@@ -40,7 +40,7 @@ const PriceListContextProvider = ({children}) => {
         if (!isEdit) {
             await listAction.onCreate([formData]);
         } else {
-            await listAction.onEdit('uuid', form.uuid, {uuid: form.uuid, ...formData});
+            await listAction.onEdit('uuid', value.uuid, {uuid: value.uuid, ...formData});
         }
         await listRead.getList();
         setIsEdit(false);
@@ -48,8 +48,10 @@ const PriceListContextProvider = ({children}) => {
     }
 
     const handleDelete = async (datum) => {
-        await listAction.onDelete('uuid', datum.uuid);
-        await listRead.getList();
+        if (window.confirm(`Apakah anda yakin menghapus ${datum.komoditas} ?`)) {
+            await listAction.onDelete('uuid', datum.uuid);
+            await listRead.getList();
+        }
     }
 
     const handleEdit = (datum) => {
