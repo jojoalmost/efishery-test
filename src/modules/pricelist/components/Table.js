@@ -1,6 +1,7 @@
 import React from "react";
-import styles from './Table.module.scss';
+import './Table.scss';
 import {usePriceList} from "../context/PriceListContext";
+import Button from "../../../components/button/Button";
 
 const Table = () => {
     const { listRead: { data, loading }, onEdit, onDelete } = usePriceList();
@@ -39,12 +40,12 @@ const Table = () => {
                     <td>{datum.komoditas}</td>
                     <td>{datum.area_provinsi}</td>
                     <td>{datum.area_kota}</td>
-                    <td className={styles.textRight}>{datum.size}</td>
-                    <td className={styles.textRight}>{currencyFormat(datum.price)}</td>
+                    <td className="right">{datum.size}</td>
+                    <td className="right">{currencyFormat(datum.price)}</td>
                     <td>{dateFormat(datum.tgl_parsed)}</td>
-                    <td>
-                        <button onClick={() => onEdit(datum)}>Edit</button>
-                        <button onClick={() => onDelete(datum)}>Delete</button>
+                    <td className="actions">
+                        <Button className="info" onClick={() => onEdit(datum)}>Edit</Button>
+                        <Button className="danger" onClick={() => onDelete(datum)}>Delete</Button>
                     </td>
                 </tr>
             ))}
@@ -53,7 +54,8 @@ const Table = () => {
     }
 
     return (
-        <table className={styles.table}>
+        <div>
+        <table className="table">
             <thead>
             <tr>
                 <th rowSpan={2}>komoditas</th>
@@ -70,6 +72,7 @@ const Table = () => {
             </thead>
             {renderTbody()}
         </table>
+        </div>
     )
 }
 export default Table;

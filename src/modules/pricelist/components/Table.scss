@@ -1,0 +1,41 @@
+@import "src/styles/variables";
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-transform: capitalize;
+    padding: 12px 8px;
+    background-color: $primary-color;
+    color: $white-color;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 8px;
+      }
+    }
+  }
+}
+
+.right {
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}

@@ -31,7 +31,7 @@ const PriceListContextProvider = ({children}) => {
             uuid: uuidv1(),
             area_provinsi: area[0],
             area_kota: area[1],
-            komoditas: String(form.Komoditas).toUpperCase(),
+            komoditas: String(form.Komoditas).toUpperCase().trim(),
             price: form.Price,
             size: form.Size.value,
             tgl_parsed: dateToISO,
