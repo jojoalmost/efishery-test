@@ -10,7 +10,7 @@ const priceListDefaultValue = {
     area_kota: '',
     size: '',
     price: '',
-    tgl_parsed: '',
+    tgl_parsed: new Date(),
     timestamp: ''
 };
 
@@ -25,8 +25,10 @@ const PriceListContextProvider = ({children}) => {
     const optionsSize = useSteinRead('option_size');
 
     const handleSubmit = async (form) => {
-        const area = form['Area'].value.split('|');
-        const dateToISO = new Date().toISOString();
+        const date = new Date(form.Tanggal);
+        const time= form.Jam.split(':');
+        const area = form.Area.value.split('|');
+        const dateToISO = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0], time[1]).toISOString();
         const formData = {
             uuid: uuidv1(),
             area_provinsi: area[0],

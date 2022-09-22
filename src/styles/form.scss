@@ -4,7 +4,7 @@ form {
   flex-direction: column;
   gap: 8px;
 
-  input[type=text], select {
+  input[type=text],  input[type=time], {
     width: 100%;
     padding: 12px 8px;
     margin: 8px 0;
@@ -36,6 +36,10 @@ form {
 
   input[type=submit]:hover {
     background-color: #45a049;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
   }
 }
 

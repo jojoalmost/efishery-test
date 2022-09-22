@@ -27,16 +27,26 @@ const Table = () => {
         if (loading) return (
             <tbody>
             <tr>
-                <td colSpan="7">Loading...</td>
+                <td colSpan="7" className="content-center">Loading...</td>
             </tr>
             </tbody>
         )
         let cleanData = data.filter(({uuid}) => uuid);
         cleanData = cleanData.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
+
+        if (cleanData.length === 0){
+            return (
+                <tbody>
+                <tr>
+                    <td colSpan="7" className="content-center">Price list kosong</td>
+                </tr>
+                </tbody>
+            )
+        }
         return (
             <tbody>
             {cleanData.map(datum => (
-                <tr>
+                <tr key={datum.uuid}>
                     <td>{datum.komoditas}</td>
                     <td>{datum.area_provinsi}</td>
                     <td>{datum.area_kota}</td>
