@@ -81,6 +81,7 @@ const PriceListContextProvider = ({children}) => {
             showModalForm,
             setShowModalForm,
             isEdit,
+            listAction,
             onCreate: handleCreate,
             onEdit: handleEdit,
             onDelete: handleDelete,

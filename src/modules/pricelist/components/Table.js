@@ -6,7 +6,7 @@ import moment from "moment";
 import Alert from "../../../components/alert/Alert";
 
 const Table = () => {
-    const { listRead: { data, loading, error }, onEdit, onDelete, sort: { sortBy, sortDirection} } = usePriceList();
+    const {listRead: {data, loading, error}, onEdit, onDelete, sort: {sortBy, sortDirection}} = usePriceList();
 
     const currencyFormat = (number = 0) => {
         return new Intl.NumberFormat(['ban', 'id'], {style: 'currency', currency: 'IDR'}).format(number);
@@ -40,19 +40,30 @@ const Table = () => {
     }, [data, sortBy, sortDirection]);
 
     const renderTbody = () => {
-        if (loading) return (
-            <tbody>
-            <tr>
-                <td colSpan="7" className="content-center">Loading...</td>
-            </tr>
-            </tbody>
-        )
-
-        if (sortedData.length === 0){
+        if (loading) {
             return (
                 <tbody>
                 <tr>
-                    <td colSpan="7" className="content-center">Price list kosong</td>
+                    <td colSpan="7">
+                        <div className="content-center">
+                            <div className="loading"/>
+                            <h3>Loading...</h3>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            )
+        }
+
+        if (sortedData.length === 0) {
+            return (
+                <tbody>
+                <tr>
+                    <td colSpan="7">
+                        <div className="content-center">
+                            <h3>No Entry Data</h3>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             )
@@ -79,24 +90,24 @@ const Table = () => {
 
     return (
         <div className="table-wrapper">
-            <Alert error={error} />
-        <table className="table">
-            <thead>
-            <tr>
-                <th rowSpan={2}>komoditas</th>
-                <th colSpan={2}>area</th>
-                <th rowSpan={2}>size</th>
-                <th rowSpan={2}>price</th>
-                <th rowSpan={2}>tanggal</th>
-                <th rowSpan={2}>action</th>
-            </tr>
-            <tr>
-                <th>provinsi</th>
-                <th>kota</th>
-            </tr>
-            </thead>
-            {renderTbody()}
-        </table>
+            <Alert error={error}/>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th rowSpan={2}>komoditas</th>
+                    <th colSpan={2}>area</th>
+                    <th rowSpan={2}>size</th>
+                    <th rowSpan={2}>price</th>
+                    <th rowSpan={2}>tanggal</th>
+                    <th rowSpan={2}>action</th>
+                </tr>
+                <tr>
+                    <th>provinsi</th>
+                    <th>kota</th>
+                </tr>
+                </thead>
+                {renderTbody()}
+            </table>
         </div>
     )
 }

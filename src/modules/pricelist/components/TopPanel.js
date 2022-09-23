@@ -5,7 +5,7 @@ import {Filters, Modal, Sorter} from "./index";
 import './TopPanel.scss';
 
 const TopPanel = () => {
-    const {onCreate} = usePriceList();
+    const {onCreate, listRead: {loading: loadingList}, listAction: { loading: loadingAction }} = usePriceList();
     const [showFilter, setShowFilter] = React.useState(false);
 
     const handleShowFilter = () => {
@@ -21,7 +21,7 @@ const TopPanel = () => {
                 </div>
                 <Sorter/>
             </div>
-            <Modal show={showFilter} title="Advanced Filter" onClose={handleShowFilter}>
+            <Modal show={showFilter} loading={loadingAction || loadingList} title="Advanced Filter" onClose={handleShowFilter}>
                 <Filters onClose={handleShowFilter}/>
             </Modal>
         </>

@@ -1,7 +1,8 @@
 @import "src/styles/variables";
+@import "src/styles/loading";
 
 .table-wrapper {
-  @media (max-width: $phone){
+  @media (max-width: $phone) {
     overflow: scroll;
   }
 }
@@ -10,7 +11,7 @@
   width: 100%;
   border-collapse: collapse;
 
-  @media (max-width: $phone){
+  @media (max-width: $phone) {
     overflow: $desktop;
   }
 
@@ -44,12 +45,21 @@
   text-align: right;
 }
 
-.content-center{
-  text-align: center;
+.content-center {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  min-height: 20px;
 }
 
 .actions {
   display: flex;
   gap: 12px;
   justify-content: center;
+}
+
+.loading {
+  @include loading
 }
