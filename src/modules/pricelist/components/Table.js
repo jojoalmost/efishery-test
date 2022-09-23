@@ -3,9 +3,10 @@ import './Table.scss';
 import {usePriceList} from "../context/PriceListContext";
 import Button from "../../../components/button/Button";
 import moment from "moment";
+import Alert from "../../../components/alert/Alert";
 
 const Table = () => {
-    const { listRead: { data, loading }, onEdit, onDelete, sort: { sortBy, sortDirection} } = usePriceList();
+    const { listRead: { data, loading, error }, onEdit, onDelete, sort: { sortBy, sortDirection} } = usePriceList();
 
     const currencyFormat = (number = 0) => {
         return new Intl.NumberFormat(['ban', 'id'], {style: 'currency', currency: 'IDR'}).format(number);
@@ -78,6 +79,7 @@ const Table = () => {
 
     return (
         <div className="table-wrapper">
+            <Alert error={error} />
         <table className="table">
             <thead>
             <tr>
