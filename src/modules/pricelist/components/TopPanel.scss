@@ -1,7 +1,20 @@
+@import "src/styles/variables";
+
 .top-panel {
   padding: 20px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 12px;
+
+  @media (max-width: $phone){
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .actions {
+    @media (max-width: $phone){
+      justify-content: flex-start;
+    }
+  }
 }

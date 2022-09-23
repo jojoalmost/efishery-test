@@ -5,6 +5,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: $phone){
+   gap: 0;
+  }
 }
 
 input[type=text],  input[type=time], select {
@@ -23,6 +27,10 @@ input[type=text],  input[type=time], select {
 
   &:focus-visible {
     outline: none;
+  }
+
+  @media (max-width: $phone){
+    //padding: 12px;
   }
 }
 

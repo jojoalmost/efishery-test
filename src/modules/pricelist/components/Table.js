@@ -77,7 +77,7 @@ const Table = () => {
     }
 
     return (
-        <div>
+        <div className="table-wrapper">
         <table className="table">
             <thead>
             <tr>

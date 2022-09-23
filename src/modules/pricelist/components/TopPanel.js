@@ -13,16 +13,18 @@ const TopPanel = () => {
     }
 
     return (
-        <div className="top-panel">
-            <Modal show={showFilter} title="Advanced Filter" onClose={handleShowFilter}>
-                <Filters onClose={handleShowFilter} />
-            </Modal>
-            <div className="actions">
-                <Button onClick={onCreate}>Create</Button>
-                <Button onClick={handleShowFilter}>Advanced Filter</Button>
+        <>
+            <div className="top-panel">
+                <div className="actions">
+                    <Button onClick={onCreate}>Create</Button>
+                    <Button onClick={handleShowFilter}>Advanced Filter</Button>
+                </div>
+                <Sorter/>
             </div>
-            <Sorter />
-        </div>
+            <Modal show={showFilter} title="Advanced Filter" onClose={handleShowFilter}>
+                <Filters onClose={handleShowFilter}/>
+            </Modal>
+        </>
     )
 }
 export default TopPanel

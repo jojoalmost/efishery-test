@@ -1,8 +1,18 @@
 @import "src/styles/variables";
 
+.table-wrapper {
+  @media (max-width: $phone){
+    overflow: scroll;
+  }
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
+
+  @media (max-width: $phone){
+    overflow: $desktop;
+  }
 
   th {
     text-transform: capitalize;
