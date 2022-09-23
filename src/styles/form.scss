@@ -5,38 +5,38 @@ form {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
 
-  input[type=text],  input[type=time], {
-    width: 100%;
-    padding: 12px 8px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+input[type=text],  input[type=time], select {
+  width: 100%;
+  padding: 12px 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
 
-    &:focus {
-      border: 2px solid #2684FF;
-    }
-
-    &:focus-visible {
-      outline: none;
-    }
+  &:focus {
+    border: 2px solid #2684FF;
   }
 
-  button[type=submit] {
-    width: 100%;
-    @extend .button;
+  &:focus-visible {
+    outline: none;
   }
+}
 
-  input[type=submit]:hover {
-    background-color: #45a049;
-  }
+button[type=submit] {
+  width: 100%;
+  @extend .button;
+}
 
-  .react-datepicker-wrapper {
-    width: 100%;
-  }
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }
 
 

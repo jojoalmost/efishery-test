@@ -1,7 +1,7 @@
 import React from "react";
 import './Button.scss'
 
-const Button = ({children, className, loading, ...props}) => {
+const Button = ({children, className = '', loading, ...props}) => {
     if (loading) return (
         <button {...props} className={`button ${className}`}><div className="loading" />{children}</button>
     )

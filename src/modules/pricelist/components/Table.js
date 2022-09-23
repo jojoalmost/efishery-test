@@ -2,18 +2,41 @@ import React from "react";
 import './Table.scss';
 import {usePriceList} from "../context/PriceListContext";
 import Button from "../../../components/button/Button";
-import {format} from "date-fns";
+import moment from "moment";
 
 const Table = () => {
-    const { listRead: { data, loading }, onEdit, onDelete } = usePriceList();
+    const { listRead: { data, loading }, onEdit, onDelete, sort: { sortBy, sortDirection} } = usePriceList();
 
     const currencyFormat = (number = 0) => {
         return new Intl.NumberFormat(['ban', 'id'], {style: 'currency', currency: 'IDR'}).format(number);
     }
 
     const dateFormat = (date) => {
-        return format(new Date(date), 'PPpp');
+        moment.locale('id');
+        return moment(date).format('LLLL');
     }
+
+    const sortedData = React.useMemo(() => {
+        let sortedData = data.filter(({uuid}) => uuid);
+        sortedData = sortedData.map(datum => ({
+            ...datum,
+            area_kota: String(datum.area_kota).trim(),
+            size_number: Number(datum.size),
+            price_number: Number(datum.price),
+        }))
+        if (sortBy !== '') {
+            sortedData.sort((a, b) => {
+                if (a[sortBy] < b[sortBy]) {
+                    return sortDirection === 'asc' ? -1 : 1;
+                }
+                if (a[sortBy] > b[sortBy]) {
+                    return sortDirection === 'asc' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortedData;
+    }, [data, sortBy, sortDirection]);
 
     const renderTbody = () => {
         if (loading) return (
@@ -23,10 +46,8 @@ const Table = () => {
             </tr>
             </tbody>
         )
-        let cleanData = data.filter(({uuid}) => uuid);
-        cleanData = cleanData.sort((a, b) => new Date(b.tgl_parsed).getTime() - new Date(a.tgl_parsed).getTime());
 
-        if (cleanData.length === 0){
+        if (sortedData.length === 0){
             return (
                 <tbody>
                 <tr>
@@ -37,8 +58,8 @@ const Table = () => {
         }
         return (
             <tbody>
-            {cleanData.map(datum => (
-                <tr key={datum.uuid}>
+            {sortedData.map((datum, index) => (
+                <tr key={index}>
                     <td>{datum.komoditas}</td>
                     <td>{datum.area_provinsi}</td>
                     <td>{datum.area_kota}</td>

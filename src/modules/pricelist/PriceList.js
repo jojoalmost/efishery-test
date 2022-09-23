@@ -1,7 +1,5 @@
 import React from "react";
-import {Table} from "./components";
-import ModalForm from "./components/ModalForm";
-import TopPanel from "./components/TopPanel";
+import {ModalForm, Table, TopPanel} from "./components";
 
 const PriceList = () => {
 

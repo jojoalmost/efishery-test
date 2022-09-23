@@ -1,9 +1,8 @@
 import React from "react";
 import {usePriceList} from "../context/PriceListContext";
 import Button from "../../../components/button/Button";
-import Filters from "./Filters";
+import {Filters, Modal, Sorter} from "./index";
 import './TopPanel.scss';
-import Modal from "./modal/Modal";
 
 const TopPanel = () => {
     const {onCreate} = usePriceList();
@@ -18,8 +17,11 @@ const TopPanel = () => {
             <Modal show={showFilter} title="Advanced Filter" onClose={handleShowFilter}>
                 <Filters onClose={handleShowFilter} />
             </Modal>
-            <Button onClick={onCreate}>Create</Button>
-            <Button onClick={handleShowFilter}>Advanced Filter</Button>
+            <div className="actions">
+                <Button onClick={onCreate}>Create</Button>
+                <Button onClick={handleShowFilter}>Advanced Filter</Button>
+            </div>
+            <Sorter />
         </div>
     )
 }

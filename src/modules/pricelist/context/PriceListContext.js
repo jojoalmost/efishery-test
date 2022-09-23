@@ -18,8 +18,11 @@ const priceListDefaultValue = {
 const PriceListContext = React.createContext({});
 const PriceListContextProvider = ({children}) => {
     const [value, setValue] = React.useState(priceListDefaultValue);
+    const [searchValue, setSearchValue] = React.useState(undefined);
     const [isEdit, setIsEdit] = React.useState(false);
     const [showModalForm, setShowModalForm] = useState(false);
+    const [sortBy, setSortBy] = useState('tgl_parsed');
+    const [sortDirection, setSortDirection] = useState('desc');
     const listRead = useSteinRead('list');
     const listAction = useSteinActions('list');
     const optionsArea = useSteinRead('option_area');
@@ -31,8 +34,8 @@ const PriceListContextProvider = ({children}) => {
         const dateToISO = moment(`${date} ${form.Jam}`, "DD MM YYYY hh:mm").toISOString();
         const formData = {
             uuid: uuidv1(),
-            area_provinsi: area[0],
-            area_kota: area[1],
+            area_provinsi: String(area[0]).trim(),
+            area_kota: String(area[1]).trim(),
             komoditas: String(form.Komoditas).toUpperCase().trim(),
             price: form.Price,
             size: form.Size.value,
@@ -82,6 +85,16 @@ const PriceListContextProvider = ({children}) => {
             onEdit: handleEdit,
             onDelete: handleDelete,
             onSubmit: handleSubmit,
+            search: {
+                setSearchValue,
+                searchValue
+            },
+            sort: {
+                sortDirection,
+                sortBy,
+                setSortBy,
+                setSortDirection,
+            }
         }}>
             {children}
         </PriceListContext.Provider>
