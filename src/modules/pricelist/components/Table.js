@@ -2,6 +2,7 @@ import React from "react";
 import './Table.scss';
 import {usePriceList} from "../context/PriceListContext";
 import Button from "../../../components/button/Button";
+import {format} from "date-fns";
 
 const Table = () => {
     const { listRead: { data, loading }, onEdit, onDelete } = usePriceList();
@@ -11,16 +12,7 @@ const Table = () => {
     }
 
     const dateFormat = (date) => {
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric'
-        };
-        return new Date(date).toLocaleDateString("id-ID", options);
+        return format(new Date(date), 'PPpp');
     }
 
     const renderTbody = () => {

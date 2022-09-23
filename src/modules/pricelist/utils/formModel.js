@@ -1,3 +1,6 @@
+import {format} from "date-fns";
+import moment from "moment";
+
 const formModel = (value, optionsArea = [], optionsSize = []) => {
     const areas = optionsArea.map(({province, city}) => ({
         "value": `${province}|${city}`,
@@ -8,12 +11,6 @@ const formModel = (value, optionsArea = [], optionsSize = []) => {
         "value": size,
         "label": size,
     }));
-
-    const getTime = () => {
-        const hh = new Date(value.tgl_parsed).getHours();
-        const mm = new Date(value.tgl_parsed).getMinutes();
-        return `${hh}:${mm}`;
-    }
 
     return {
         "Komoditas": {
@@ -49,7 +46,7 @@ const formModel = (value, optionsArea = [], optionsSize = []) => {
         "Jam": {
             "type": "time",
             "required": true,
-            "defaultValue": getTime(),
+            "defaultValue": moment(new Date(value.tgl_parsed)).format('HH:mm'),
         },
         "Save": {
             "type": "submit",

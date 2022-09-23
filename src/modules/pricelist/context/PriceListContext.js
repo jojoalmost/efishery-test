@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import useSteinRead from "../../../hooks/useSteinRead";
 import {v1 as uuidv1} from 'uuid';
 import useSteinActions from "../../../hooks/useSteinActions";
+import moment from "moment";
 
 const priceListDefaultValue = {
     uuid: '',
@@ -25,10 +26,9 @@ const PriceListContextProvider = ({children}) => {
     const optionsSize = useSteinRead('option_size');
 
     const handleSubmit = async (form) => {
-        const date = new Date(form.Tanggal);
-        const time= form.Jam.split(':');
         const area = form.Area.value.split('|');
-        const dateToISO = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time[0], time[1]).toISOString();
+        const date = moment(form.Tanggal).format('DD MM YYYY');
+        const dateToISO = moment(`${date} ${form.Jam}`, "DD MM YYYY hh:mm").toISOString();
         const formData = {
             uuid: uuidv1(),
             area_provinsi: area[0],
@@ -46,6 +46,7 @@ const PriceListContextProvider = ({children}) => {
         }
         await listRead.getList();
         setIsEdit(false);
+        setValue(priceListDefaultValue);
         setShowModalForm(false);
     }
 

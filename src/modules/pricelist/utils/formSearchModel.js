@@ -27,6 +27,12 @@ const formSearchModel = (optionsArea = [], optionsSize = []) => {
             "placeholder": "e.g. 100,000",
 
         },
+        // "Tanggal": {
+        //     "type": "date",
+        // },
+        // "Jam": {
+        //     "type": "time",
+        // },
         "Search": {
             "type": "submit",
         }
